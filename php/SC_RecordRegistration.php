@@ -28,6 +28,23 @@ if (isset($_POST['priceMultiplierWorker']))  $string_priceMultiplierWorker  = ht
 if (isset($_POST['positionWorker']))         $string_positionWorker         = htmlentities($_POST['positionWorker']);
 if (isset($_POST['serviceCenterIDWorker']))  $string_serviceCenterIDWorker  = htmlentities($_POST['serviceCenterIDWorker']);
 
+if (isset($_POST['id_RecordRepair']))                      $string_id_RecordRepair                      = htmlentities($_POST['id_RecordRepair']);
+if (isset($_POST['start_data_RecordRepair']))              $string_start_data_RecordRepair              = htmlentities($_POST['start_data_RecordRepair']);
+if (isset($_POST['end_data_RecordRepair']))                $string_end_data_RecordRepair                = htmlentities($_POST['end_data_RecordRepair']);
+if (isset($_POST['payment_method_RecordRepair']))          $string_payment_method_RecordRepair          = htmlentities($_POST['payment_method_RecordRepair']);
+if (isset($_POST['quality_RecordRepair']))                 $string_quality_RecordRepair                 = htmlentities($_POST['quality_RecordRepair']);
+if (isset($_POST['urgency_RecordRepair']))                 $string_urgency_RecordRepair                 = htmlentities($_POST['urgency_RecordRepair']);
+if (isset($_POST['guarantee_RecordRepair']))               $string_guarantee_RecordRepair               = htmlentities($_POST['guarantee_RecordRepair']);
+if (isset($_POST['problem_description_RecordRepair']))     $string_problem_description_RecordRepair     = htmlentities($_POST['problem_description_RecordRepair']);
+if (isset($_POST['comment_RecordRepair']))                 $string_comment_RecordRepair                 = htmlentities($_POST['comment_RecordRepair']);
+if (isset($_POST['review_worker_RecordRepair']))           $string_review_worker_RecordRepair           = htmlentities($_POST['review_worker_RecordRepair']);
+if (isset($_POST['client_id_RecordRepair']))               $string_client_id_RecordRepair               = htmlentities($_POST['client_id_RecordRepair']);
+if (isset($_POST['delivery_for_repairs_id_RecordRepair'])) $string_delivery_for_repairs_id_RecordRepair = htmlentities($_POST['delivery_for_repairs_id_RecordRepair']);
+if (isset($_POST['worker_id_RecordRepair']))               $string_worker_id_RecordRepair               = htmlentities($_POST['worker_id_RecordRepair']);
+if (isset($_POST['repair_work_id_RecordRepair']))          $string_repair_work_id_RecordRepair          = htmlentities($_POST['repair_work_id_RecordRepair']);
+if (isset($_POST['device_id_RecordRepair']))               $string_device_id_RecordRepair               = htmlentities($_POST['device_id_RecordRepair']);
+if (isset($_POST['service_center_id_RecordRepair']))       $string_service_center_id_RecordRepair       = htmlentities($_POST['service_center_id_RecordRepair']);
+
 $a = (String)$string_a;
 $b = (String)$string_b;
 $c = (String)$string_c;
@@ -56,6 +73,23 @@ $accessComplexityWorker = (String)$string_accessComplexityWorker;
 $priceMultiplierWorker  = (String)$string_priceMultiplierWorker;
 $positionWorker         = (String)$string_positionWorker;
 $serviceCenterIDWorker  = (String)$string_serviceCenterIDWorker;
+
+$id_RecordRepair                      = (String)$string_id_RecordRepair;
+$start_data_RecordRepair              = (String)$string_start_data_RecordRepair;
+$end_data_RecordRepair                = (String)$string_end_data_RecordRepair;
+$payment_method_RecordRepair          = (String)$string_payment_method_RecordRepair;
+$quality_RecordRepair                 = (String)$string_quality_RecordRepair;
+$urgency_RecordRepair                 = (String)$string_urgency_RecordRepair;
+$guarantee_RecordRepair               = (String)$string_guarantee_RecordRepair;
+$problem_description_RecordRepair     = (String)$string_problem_description_RecordRepair;
+$comment_RecordRepair                 = (String)$string_comment_RecordRepair;
+$review_worker_RecordRepair           = (String)$string_review_worker_RecordRepair;
+$client_id_RecordRepair               = (String)$string_client_id_RecordRepair;
+$delivery_for_repairs_id_RecordRepair = (String)$string_delivery_for_repairs_id_RecordRepair;
+$worker_id_RecordRepair               = (String)$string_worker_id_RecordRepair;
+$repair_work_id_RecordRepair          = (String)$string_repair_work_id_RecordRepair;
+$device_id_RecordRepair               = (String)$string_device_id_RecordRepair;
+$service_center_id_RecordRepair       = (String)$string_service_center_id_RecordRepair;
 
 
 
@@ -93,24 +127,41 @@ if ($link == true) {
   }
 
   if($c == "detail"){
-    $sql = 'INSERT INTO detail SET name = ?, availability = ?, price = ?, dimensions = ?';
+    $sql = 'INSERT INTO detail 
+            SET name = ?, availability = ?, price = ?, dimensions = ?';
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$nameDetail,$availabilityDetail,$priceDetail,$dimensionsDetail]);
     $data = $stmt->fetchAll();
   }
   
   if($c == "worker"){
-    $sql = 'INSERT INTO worker SET name = ?, surname = ?, address = ?, phone = ?, email = ?, 
-    education = ?, access_complexity = ?, price_multiplier = ?, position = ?, service_center_id = ?';
+    $sql = 'INSERT INTO worker 
+            SET name = ?, surname = ?, address = ?, phone = ?, email = ?, education = ?, 
+                access_complexity = ?, price_multiplier = ?, position = ?, service_center_id = ?';
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$nameWorker,$surnameWorker,$addressWorker,$phoneWorker,$emailWorker,$educationWorker,
                     $accessComplexityWorker, $priceMultiplierWorker, $positionWorker, $serviceCenterIDWorker ]);
     $data = $stmt->fetchAll();
-
+  } 
+  
+  if($c == "record_repair"){
+    $sql = 'INSERT INTO record_repair 
+            SET start_data = ?, end_data = ?, payment_method = ?, quality = ?, urgency = ?, 
+                guarantee = ?, problem_description = ?, comment = ?, review_worker = ?, 
+                client_id = ?, delivery_for_repairs_id = ?, worker_id = ?, repair_work_id = ?, 
+                device_id = ?, service_center_id = ?';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$start_data_RecordRepair, $end_data_RecordRepair, $payment_method_RecordRepair, 
+                    $quality_RecordRepair, $urgency_RecordRepair, $guarantee_RecordRepair,  
+                    $problem_description_RecordRepair, $comment_RecordRepair, $review_worker_RecordRepair, 
+                    $client_id_RecordRepair, $delivery_for_repairs_id_RecordRepair, $worker_id_RecordRepair, 
+                    $repair_work_id_RecordRepair, $device_id_RecordRepair, $service_center_id_RecordRepair, ]);
+    $data = $stmt->fetchAll();
   } 
 
   print("Запрос на добавление отправлен в БД   ");
 
 }
+
 
 ?>
