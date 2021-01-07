@@ -95,6 +95,7 @@ $service_center_id_RecordRepair       = (String)$string_service_center_id_Record
 
 
 
+
 $db_host = "localhost";      // Имя сервера
 $db_user = "cc33953_server"; // Имя пользователя
 $db_password = "69911201";   // Пароль
